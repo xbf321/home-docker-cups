@@ -25,7 +25,9 @@ docker build -t home-cupsd .
 ### 进入 Docker
 
 ```shell
-docker run -d -p 631:631 -v /var/run/dbus:/var/run/dbus --name cupsd home-cupsd
+docker run -d -p 631:631 -v /var/run/dbus:/var/run/dbus --name cupsd xbf321/home-cups
+# 进入容器内部
+docker exec -it cupsd /bin/bash
 ```
 
 ### 列出打印机型号
@@ -37,5 +39,18 @@ lpinfo -m | grep Pantum
 ## 安装打印机
 
 ```shell
+# pantum2200nw
 lpadmin -p pantum2200nw -v socket://192.168.100.1 -E -m "Pantum/Pantum P2200NW Series.ppd"
+
+# HP P1106 安装下面任意驱动即可
+# 注意：安装专门P1106驱动不起作用
+lpadmin -p HP1106-6 -v socket://192.168.100.1 -E -m "foo2zjs:0/ppd/foo2zjs/HP-LaserJet_Pro_P1566.ppd"
+lpadmin -p HP1106 -v socket://192.168.100.1 -E -m "foo2zjs:0/ppd/foo2zjs/HP-LaserJet_Pro_P1102.ppd"
+```
+
+## 管理员密码
+
+```shell
+User: print
+Password: print
 ```
