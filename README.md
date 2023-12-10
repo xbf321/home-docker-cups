@@ -19,7 +19,8 @@ openwrt 可以直接安装 cups ，但 Docker 更为容易，也方便调试，�
 ### Build
 
 ```shell
-docker build -t home-cupsd .
+docker build -t xbf321/home-cups .
+docker push xbf321/home-cups:latest
 ```
 
 ### 进入 Docker
